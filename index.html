@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>360 Demo - RTÉ</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="description" content="A VR Experiment for rte.ie using Aframe.io">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="RTÉ 360">
+
+    <meta property="og:url" content="https://www.rte.ie/vod/360/" />
+    <meta property="og:title" content="RTÉ in 360" />
+    <meta property="og:description" content="A VR Experiment for rte.ie using Aframe.io" />
+    <meta property="og:image" content="https://img.rasset.ie/000f35e5-1200.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta property="article:publisher" content="https://www.facebook.com/RTEOne/" />
+    <meta property="og:type" content="article" />
+    <meta property="fb:app_id" content="212765848759773" />
+    <meta property="article:tag" content="VR, 360" />
+    <meta property="og:site_name" content="RTE.ie" />
+    <meta property="fb:admins" content="1048256502" />
+    <meta property="fb:admins" content="100010507681175" />
+
+    <meta name="pillar" content="TV" />
+    <meta name="section" content="TV" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@rte" />
+    <meta name="twitter:title" content="RTÉ in 360" />
+    <meta name="twitter:domain" content="rte.ie" />
+    <meta name="twitter:creator" content="@sidarcy" />
+    <meta name="twitter:description" content="A VR Experiment for rte.ie using Aframe.io" />
+    <meta name="twitter:image:src" content="https://img.rasset.ie/000f35e5-1200.jpg">
+    <meta name="twitter:image" content="https://img.rasset.ie/000f35e5-1200.jpg" />
+
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<div class="loader" id="loader"></div>
+
+<a-scene visible="false">
+
+    <a-assets>
+        <!-- Scene -->
+
+        <img src="img/grid.png" id="grid" crossorigin="anonymous">
+        <img id="sky" src="img/rte-360.jpg?v=1" crossorigin="anonymous" />
+
+        <img id="play" src="img/play.png" crossorigin="anonymous" />
+
+        <a-asset-item id="logo-obj" src="model/RTE_Logo_3D.obj?v=1"></a-asset-item>
+        <a-asset-item id="logo-mtl" src="model/RTE_Logo_3D.mtl?v=1"></a-asset-item>
+
+        <!-- Tiles -->
+        <img id="tile1" src="img/1916.jpg" crossorigin="anonymous" />
+        <img id="tile2" src="img/2fm.jpg" crossorigin="anonymous" />
+        <img id="tile3" src="img/bloom.jpg" crossorigin="anonymous" />
+        <img id="tile4" src="img/bog.jpg" crossorigin="anonymous" />
+        <img id="tile5" src="img/fair-city.jpg" crossorigin="anonymous" />
+        <img id="tile6" src="img/primetime.jpg" crossorigin="anonymous" />
+        <img id="tile7" src="img/bmw.jpg?v=1" crossorigin="anonymous" />
+        <img id="tile8" src="img/coast.png?v=3" crossorigin="anonymous" />
+        <!-- Videos -->
+        <video id="video" loop="false" src="blank.mp4"></video>
+        <!-- Fonts -->
+        <a-asset-item id="dawningFont" src="fonts/dawningOfANewDayRegular.typeface.json"></a-asset-item>
+    </a-assets>
+
+    <div id="torus"></div>
+
+    <a-videosphere webkit-playsinline src="#video" visible="false"  rotation="0 180 0"></a-videosphere>
+
+    <!-- Splash screen elements -->
+
+    <a-entity id="splash" position="0 2 -2" rotation="5 0 0">
+        <a-entity obj-model="obj: #logo-obj; mtl: #logo-mtl" position="0 0 0" scale=".001 .001 .000">
+            <a-animation attribute="rotation" easing="linear" dur="3000" to="0 360 0" repeat="indefinite"></a-animation>
+        </a-entity> <!-- Child entity -->
+    </a-entity>
+
+
+    <!-- Video tiles--->
+    <a-entity rotation="0 60 0" id="videolist" position="0 0.1 0">
+
+        <a-curvedimage id="vid1" material="opacity: 0" class="tile" data-src="1916_proclamation_injected.mp4" selectable height="2" radius="5.3" theta-length="32" position="0 2.2 -0" rotation="0 65 0" scale="0.7 0.7 0.7"  src="#tile1">
+            <a-animation attribute="material.opacity" begin="300" from="0" to="1"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-out" from="1" to="0.5"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-in" from="0.5" to="1"></a-animation>
+        </a-curvedimage>
+
+        <a-curvedimage id="vid2" class="tile" selectable height="2" data-src="children.mp4?v=123" radius="5.3" theta-length="32" position="0 2.2 -0" rotation="0 30 0" scale="0.7 0.7 0.7"  src="#tile2">
+            <a-animation attribute="material.opacity" begin="300" from="0" to="1"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-out" from="1" to="0.5"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-in" from="0.5" to="1"></a-animation>
+        </a-curvedimage>
+
+        <a-curvedimage id="vid3" class="tile" selectable height="2" data-src="bloom.mp4" radius="5.3" theta-length="32" position="0 2.2 -0" rotation="0 -5 0" scale="0.7 0.7 0.7"  src="#tile3">
+            <a-animation attribute="material.opacity" begin="300" from="0" to="1"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-out" from="1" to="0.5"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-in" from="0.5" to="1"></a-animation>
+        </a-curvedimage>
+
+        <a-curvedimage id="vid4" class="tile" selectable height="2" data-src="derrigimlagh.mp4" radius="5.3" theta-length="32" position="0 2.2 -0" rotation="0 -40 0" scale="0.7 0.7 0.7"  src="#tile4">
+            <a-animation attribute="material.opacity" begin="300" from="0" to="1"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-out" from="1" to="0.5"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-in" from="0.5" to="1"></a-animation>
+        </a-curvedimage>
+
+        <a-curvedimage id="vid5" class="tile" selectable height="2" data-src="fair-city.mp4" radius="5.3" theta-length="32" position="0 2.2 -0" rotation="0 -75 0" scale="0.7 0.7 0.7"  src="#tile5">
+            <a-animation attribute="material.opacity" begin="300" from="0" to="1"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-out" from="1" to="0.5"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-in" from="0.5" to="1"></a-animation>
+        </a-curvedimage>
+
+        <a-curvedimage id="vid6" class="tile" selectable height="2" data-src="coast.mp4?v=2" radius="5.3" theta-length="32" position="0 2.2 -0" rotation="0 -110 0" scale="0.7 0.7 0.7"  src="#tile8">
+            <a-animation attribute="material.opacity" begin="300" from="0" to="1"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-out" from="1" to="0.5"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-in" from="0.5" to="1"></a-animation>
+        </a-curvedimage>
+
+        <a-curvedimage id="vid7" class="tile" selectable height="2" data-src="prime-time.mp4" radius="5.3" theta-length="32" position="0 2.2 -0" rotation="0 215 0" scale="0.7 0.7 0.7"  src="#tile6">
+            <a-animation attribute="material.opacity" begin="300" from="0" to="1"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-out" from="1" to="0.5"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-in" from="0.5" to="1"></a-animation>
+        </a-curvedimage>
+
+        <a-curvedimage id="vid8" material="opacity: 0" class="tile" selectable height="2" data-src="fair-city.mp4?v=123" radius="5.3" theta-length="32" position="0 2.2 -0" rotation="0 180 0" scale="0.7 0.7 0.7"  src="#tile5">
+            <a-animation attribute="material.opacity" begin="300" from="0" to="1"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-out" from="1" to="0.5"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-in" from="0.5" to="1"></a-animation>
+        </a-curvedimage>
+
+        <a-curvedimage id="vid9" material="opacity: 0"  class="tile" data-src="bmw.mp4" selectable height="2" radius="5.3" theta-length="32" position="0 2.2 -0" rotation="0 145 0" scale="0.7 0.7 0.7"  src="#tile7">
+            <a-animation attribute="material.opacity" begin="300" from="0" to="1"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-out" from="1" to="0.5"></a-animation>
+            <a-animation attribute="material.opacity" begin="fade-in" from="0.5" to="1"></a-animation>
+        </a-curvedimage>
+
+    </a-entity>
+
+
+    <div id="plane"></div>
+
+    <a-sky src="#sky" rotation="0 -90 0"></a-sky>
+
+
+    <a-entity camera="userHeight: 1.6" look-controls>
+        <a-entity cursor="fuse: true; fuseTimeout: 1500"
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                  material="color: #4CC3D9; shader: flat"></a-entity>
+    </a-entity>
+
+    <a-box id="back" visible="false" scale="2 2 2" position="0 -10 0" material="transparent:true" src="img/home.png?v=1"></a-box>
+
+
+</a-scene>
+
+<div id="playbtn"  onClick="mobileStart()"></div>
+
+<script type="text/javascript" src="js/script.js"></script>
+
+</body>
+</html>
